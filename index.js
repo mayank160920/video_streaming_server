@@ -13,8 +13,9 @@ app.get("/video", function (req, res) {
         res.status(400).send("Requires Range header");
     }
 
-    const videoPath = "Chris-Do.mp4";
-    const videoSize = fs.statSync("Chris-Do.mp4").size;
+    const videoPath = "./public/Chris-Do.mp4";
+    // const videoPath = "./public/video.mp4";
+    const videoSize = fs.statSync(videoPath).size;
 
     const CHUNK_SIZE = 10 ** 6; // 1MB
     const start = Number(range.replace(/\D/g, ""));
@@ -38,6 +39,12 @@ app.get("/video", function (req, res) {
     // Stream the video chunk to the client
     videoStream.pipe(res);
 });
+
+// add a route to serve files from the public folder
+app.get("/public/:file", function (req, res) {
+    res.sendFile(__dirname + "/public/" + req.params.file);
+});
+
 
 app.listen(8000, function () {
     console.log("Listening on port 8000!");

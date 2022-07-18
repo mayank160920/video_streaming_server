@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Video Streaming With Node</title>
-        <style>
-            body {
-                margin: 5% auto;
-                max-width: 100%;
-                background-color: rgb(14, 14, 14);
-                padding-top: 10%;
-                padding-left: 35%;
-            }
-        </style>
-    </head>
-    <body>
-        <video id="videoPlayer" width="50%" controls muted="muted" autoplay>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Streaming With Node</title>
+
+    <script src="https://cdn.plyr.io/3.7.2/plyr.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
+
+</head>
+
+<body>
+
+    <div class="player-container">
+        <video id="player" controls crossorigin playsinline>
             <source src="/video" type="video/mp4" />
         </video>
-    </body>
+    </div>
+
+    <style>
+        :root {
+            --plye-font-family: arial,sans-serif;
+            --plyr-control-icon-size: 2rem;
+            --plyr-font-size-time: 2rem;
+            --plyr-font-size-menu: 2rem;
+        }
+
+        .player-container {
+            width: 50vw;
+            height: 50vh;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script>
+        const player = new Plyr('#player', {
+            settings: ['captions', 'quality', 'speed'],
+            previewThumbnails: {
+                enabled: true,
+                src: 'http://localhost:8000/public/video.vtt'
+            },
+        });
+
+    </script>
+
+</body>
+
 </html>
