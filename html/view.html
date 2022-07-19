@@ -16,13 +16,13 @@
 
     <div class="player-container">
         <video id="player" controls crossorigin playsinline>
-            <source src="/video" type="video/mp4" />
+            <source src="#" type="video/mp4" />
         </video>
     </div>
 
     <style>
         :root {
-            --plye-font-family: arial,sans-serif;
+            --plye-font-family: arial, sans-serif;
             --plyr-control-icon-size: 2rem;
             --plyr-font-size-time: 2rem;
             --plyr-font-size-menu: 2rem;
@@ -40,7 +40,7 @@
             settings: ['captions', 'quality', 'speed'],
             previewThumbnails: {
                 enabled: true,
-                src: 'http://localhost:8000/public/video.vtt'
+                src: `${window.location.origin}/assets/video.vtt`
             },
         });
 
